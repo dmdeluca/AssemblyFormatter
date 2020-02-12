@@ -37,14 +37,16 @@ namespace AssemblyFormatter
         private static string FormatMips(string inputText)
         {
             inputText = Regex.Replace(inputText, @",\s+", ", ");
-            inputText = Regex.Replace(inputText, @"\n+", "\n");
-            inputText = Regex.Replace(inputText, @"\s+#\s+", "#");
+            inputText = Regex.Replace(inputText, @"\n\n+", "\n");
+            inputText = Regex.Replace(inputText, @"\s+#\s+", "  #  ");
+            inputText = Regex.Replace(inputText, @":\s+#", ":\n #");
             inputText = Regex.Replace(inputText, @"\n\s+\n", "\n");
             inputText = Regex.Replace(inputText, @"\t\$", " $");
             inputText = Regex.Replace(inputText, @"\s\s+\$", " $");
             inputText = Regex.Replace(inputText, @"\n\s*\.", "\n\t.");
             inputText = Regex.Replace(inputText, @"\s+0x", "    0x");
             inputText = Regex.Replace(inputText, @",\s+0x", ", 0x");
+            inputText = Regex.Replace(inputText, @"\n\t+", "\n    ");
             inputText = Regex.Replace(inputText, @"\n\s*(?=\w*:)", "\n");
             inputText = Regex.Replace(inputText, @"\n\s*(?=.\w*\s)", "\n\t");
             inputText = EvenlySpaceComments(inputText);
